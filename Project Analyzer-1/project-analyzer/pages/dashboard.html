@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Project Analyzer</title>
+
+  <!-- CDNs -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-wrapper">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="d-flex align-items-center gap-2 text-decoration-none">
+          <div class="brand-icon">
+            <i class="bi bi-cpu-fill"></i>
+          </div>
+          <span class="brand-name">PROJECT ANALYZER</span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Main Navigation</div>
+        <a href="dashboard.html" class="sidebar-link active">
+          <i class="bi bi-grid-1x2-fill"></i> Dashboard
+        </a>
+        <a href="projects.html" class="sidebar-link">
+          <i class="bi bi-folder-fill"></i> Projects
+        </a>
+        <a href="analysis.html" class="sidebar-link">
+          <i class="bi bi-activity"></i> Analysis
+        </a>
+        <a href="issues.html" class="sidebar-link">
+          <i class="bi bi-exclamation-triangle-fill"></i> Code Issues
+        </a>
+        <a href="dependencies.html" class="sidebar-link">
+          <i class="bi bi-diagram-3-fill"></i> Dependencies
+        </a>
+        <a href="architecture.html" class="sidebar-link">
+          <i class="bi bi-layers-fill"></i> Architecture
+        </a>
+        <a href="testing.html" class="sidebar-link">
+          <i class="bi bi-check-circle-fill"></i> Testing & Coverage
+        </a>
+        <a href="reports.html" class="sidebar-link">
+          <i class="bi bi-file-earmark-bar-graph-fill"></i> Reports
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="settings.html" class="sidebar-link">
+          <i class="bi bi-gear-fill"></i> Settings
+        </a>
+        <a href="settings.html#profile" class="sidebar-link">
+          <i class="bi bi-person-circle"></i> Profile
+        </a>
+        <a href="login.html" class="sidebar-link text-danger">
+          <i class="bi bi-box-arrow-left"></i> Logout
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="app-main">
+      <!-- Top Navbar -->
+      <header class="app-header">
+        <div class="d-flex align-items-center gap-3">
+          <button id="mobileNavToggle" class="btn btn-icon btn-secondary-custom d-none" aria-label="Toggle Navigation">
+            <i class="bi bi-list fs-4"></i>
+          </button>
+          
+          <div class="header-search">
+            <i class="bi bi-search"></i>
+            <input type="text" class="form-control form-control-custom" placeholder="Search projects, issues, code...">
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <div class="dropdown">
+            <button class="notification-btn" data-bs-toggle="dropdown" aria-expanded="false" title="Notifications">
+              <i class="bi bi-bell"></i>
+              <span class="notification-badge"></span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-dark dropdown-menu-end p-3 shadow-lg" style="width: 320px; background-color: var(--bg-card); border-color: var(--border-color);">
+              <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom border-secondary">
+                <strong class="text-white small">Notifications</strong>
+                <span class="badge bg-primary text-white" style="font-size:0.7rem;">3 New</span>
+              </div>
+              <div class="d-flex flex-column gap-2" style="font-size:0.825rem;">
+                <div class="p-2 rounded bg-secondary-theme">
+                  <div class="text-white fw-semibold">Security scan finished</div>
+                  <div class="text-muted" style="font-size:0.75rem;">15 mins ago — 3 critical items found</div>
+                </div>
+                <div class="p-2 rounded bg-secondary-theme">
+                  <div class="text-white fw-semibold">New dependency update</div>
+                  <div class="text-muted" style="font-size:0.75rem;">1 hour ago — Spring Security 6.2.1 available</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dropdown">
+            <div class="user-profile-menu" data-bs-toggle="dropdown" aria-expanded="false">
+              <div class="avatar">PK</div>
+              <div class="d-none d-md-block text-start">
+                <span class="d-block fw-bold text-white lh-1" style="font-size:0.875rem;">Praveen Kumar</span>
+                <span class="text-muted" style="font-size:0.75rem;">Senior Software Engineer</span>
+              </div>
+              <i class="bi bi-chevron-down text-muted small ms-1"></i>
+            </div>
+            <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow-lg">
+              <li><a class="dropdown-item" href="settings.html"><i class="bi bi-person me-2"></i>Profile Settings</a></li>
+              <li><a class="dropdown-item" href="reports.html"><i class="bi bi-file-earmark-text me-2"></i>My Reports</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="login.html"><i class="bi bi-box-arrow-left me-2"></i>Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <!-- Page Content -->
+      <div class="page-content">
+        <!-- Heading Row -->
+        <div class="page-header-row">
+          <div>
+            <h1 class="page-title">Good morning, Praveen 👋</h1>
+            <p class="page-subtitle">Here's an overview of your projects and health metrics.</p>
+          </div>
+          <a href="new-project.html" class="btn btn-primary-custom">
+            <i class="bi bi-plus-lg"></i> New Project
+          </a>
+        </div>
+
+        <!-- 4 Health Cards -->
+        <div class="row g-4 mb-4">
+          <!-- Card 1: Project Health -->
+          <div class="col-sm-6 col-xl-3">
+            <div class="kpi-card" style="--card-accent: var(--accent-primary);">
+              <div class="kpi-icon-wrapper">
+                <i class="bi bi-activity"></i>
+              </div>
+              <div class="kpi-label">Project Health</div>
+              <div class="kpi-value-row">
+                <div class="kpi-value"><span id="healthScoreCounter">0</span> <span class="fs-6 text-muted">/ 100</span></div>
+                <div class="kpi-trend trend-up"><i class="bi bi-arrow-up-short"></i>+8.2%</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Code Quality -->
+          <div class="col-sm-6 col-xl-3">
+            <div class="kpi-card" style="--card-accent: var(--accent-secondary);">
+              <div class="kpi-icon-wrapper text-secondary-accent">
+                <i class="bi bi-code-slash"></i>
+              </div>
+              <div class="kpi-label">Code Quality</div>
+              <div class="kpi-value-row">
+                <div class="kpi-value"><span id="qualityScoreCounter">0</span> <span class="fs-6 text-muted">/ 100</span></div>
+                <div class="kpi-trend trend-up"><i class="bi bi-arrow-up-short"></i>+5.4%</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Security -->
+          <div class="col-sm-6 col-xl-3">
+            <div class="kpi-card" style="--card-accent: var(--color-warning);">
+              <div class="kpi-icon-wrapper text-warning">
+                <i class="bi bi-shield-lock"></i>
+              </div>
+              <div class="kpi-label">Security Score</div>
+              <div class="kpi-value-row">
+                <div class="kpi-value"><span id="securityScoreCounter">0</span> <span class="fs-6 text-muted">/ 100</span></div>
+                <div class="kpi-trend trend-up"><i class="bi bi-arrow-up-short"></i>+3.1%</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: Test Coverage -->
+          <div class="col-sm-6 col-xl-3">
+            <div class="kpi-card" style="--card-accent: var(--color-success);">
+              <div class="kpi-icon-wrapper text-success">
+                <i class="bi bi-check2-circle"></i>
+              </div>
+              <div class="kpi-label">Test Coverage</div>
+              <div class="kpi-value-row">
+                <div class="kpi-value"><span id="coverageScoreCounter">0</span><span class="fs-6 text-muted">%</span></div>
+                <div class="kpi-trend trend-up"><i class="bi bi-arrow-up-short"></i>+6.8%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Grid Row -->
+        <div class="row g-4 mb-4">
+          <!-- Main Line Chart -->
+          <div class="col-lg-8">
+            <div class="card-custom h-100">
+              <div class="card-custom-header">
+                <div>
+                  <h6 class="fw-bold text-white mb-0">Project Health History</h6>
+                  <span class="text-muted small">Historical analysis score across last 7 scans</span>
+                </div>
+                <span class="badge-custom badge-healthy"><i class="bi bi-graph-up-arrow"></i> Upward Trend</span>
+              </div>
+              <div class="card-custom-body" style="height: 280px;">
+                <canvas id="projectHealthLineChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Issue Summary Doughnut Chart -->
+          <div class="col-lg-4">
+            <div class="card-custom h-100">
+              <div class="card-custom-header">
+                <h6 class="fw-bold text-white mb-0">Issue Severity Breakdown</h6>
+                <a href="issues.html" class="small text-accent">View All</a>
+              </div>
+              <div class="card-custom-body d-flex align-items-center justify-content-center" style="height: 280px;">
+                <canvas id="issueSeverityDoughnutChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Grid: Project Overview Table & Recent Activity -->
+        <div class="row g-4">
+          <!-- Projects Table -->
+          <div class="col-xl-8">
+            <div class="card-custom">
+              <div class="card-custom-header">
+                <h6 class="fw-bold text-white mb-0">Managed Projects Overview</h6>
+                <a href="projects.html" class="btn btn-secondary-custom btn-sm">All Projects</a>
+              </div>
+              <div class="table-responsive">
+                <table class="table-custom">
+                  <thead>
+                    <tr>
+                      <th>Project</th>
+                      <th>Technology</th>
+                      <th>Health</th>
+                      <th>Issues</th>
+                      <th>Last Analyzed</th>
+                      <th class="text-end">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="dashboardProjectsTbody">
+                    <!-- Populated via js/dashboard.js -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Activity -->
+          <div class="col-xl-4">
+            <div class="card-custom h-100">
+              <div class="card-custom-header">
+                <h6 class="fw-bold text-white mb-0">Recent Activity</h6>
+                <i class="bi bi-clock-history text-muted"></i>
+              </div>
+              <div class="card-custom-body">
+                <div class="timeline">
+                  <div class="timeline-item">
+                    <div class="timeline-dot" style="border-color: var(--accent-primary);"></div>
+                    <div class="timeline-content">
+                      <div class="timeline-title">Project Analyzer analyzed</div>
+                      <div class="timeline-time">2 minutes ago</div>
+                    </div>
+                  </div>
+
+                  <div class="timeline-item">
+                    <div class="timeline-dot" style="border-color: var(--color-warning);"></div>
+                    <div class="timeline-content">
+                      <div class="timeline-title">Security scan completed</div>
+                      <div class="timeline-time">15 minutes ago</div>
+                    </div>
+                  </div>
+
+                  <div class="timeline-item">
+                    <div class="timeline-dot" style="border-color: var(--color-danger);"></div>
+                    <div class="timeline-content">
+                      <div class="timeline-title">New dependency vulnerability detected</div>
+                      <div class="timeline-time">1 hour ago</div>
+                    </div>
+                  </div>
+
+                  <div class="timeline-item">
+                    <div class="timeline-dot" style="border-color: var(--color-success);"></div>
+                    <div class="timeline-content">
+                      <div class="timeline-title">Project health improved</div>
+                      <div class="timeline-time">3 hours ago</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/api-service.js"></script>
+  <script src="../js/charts.js"></script>
+  <script src="../js/dashboard.js"></script>
+</body>
+</html>

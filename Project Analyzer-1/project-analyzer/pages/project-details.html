@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Details — Project Analyzer</title>
+
+  <!-- CDNs -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-wrapper">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="d-flex align-items-center gap-2 text-decoration-none">
+          <div class="brand-icon">
+            <i class="bi bi-cpu-fill"></i>
+          </div>
+          <span class="brand-name">PROJECT ANALYZER</span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Main Navigation</div>
+        <a href="dashboard.html" class="sidebar-link">
+          <i class="bi bi-grid-1x2-fill"></i> Dashboard
+        </a>
+        <a href="projects.html" class="sidebar-link active">
+          <i class="bi bi-folder-fill"></i> Projects
+        </a>
+        <a href="analysis.html" class="sidebar-link">
+          <i class="bi bi-activity"></i> Analysis
+        </a>
+        <a href="issues.html" class="sidebar-link">
+          <i class="bi bi-exclamation-triangle-fill"></i> Code Issues
+        </a>
+        <a href="dependencies.html" class="sidebar-link">
+          <i class="bi bi-diagram-3-fill"></i> Dependencies
+        </a>
+        <a href="architecture.html" class="sidebar-link">
+          <i class="bi bi-layers-fill"></i> Architecture
+        </a>
+        <a href="testing.html" class="sidebar-link">
+          <i class="bi bi-check-circle-fill"></i> Testing & Coverage
+        </a>
+        <a href="reports.html" class="sidebar-link">
+          <i class="bi bi-file-earmark-bar-graph-fill"></i> Reports
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="settings.html" class="sidebar-link">
+          <i class="bi bi-gear-fill"></i> Settings
+        </a>
+        <a href="login.html" class="sidebar-link text-danger">
+          <i class="bi bi-box-arrow-left"></i> Logout
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="app-main">
+      <!-- Top Navbar -->
+      <header class="app-header">
+        <button id="mobileNavToggle" class="btn btn-icon btn-secondary-custom d-none" aria-label="Toggle Navigation">
+          <i class="bi bi-list fs-4"></i>
+        </button>
+        <div class="header-search">
+          <i class="bi bi-search"></i>
+          <input type="text" class="form-control form-control-custom" placeholder="Search...">
+        </div>
+        <div class="header-actions">
+          <div class="avatar">PK</div>
+        </div>
+      </header>
+
+      <!-- Page Content -->
+      <div class="page-content">
+        <!-- Header Banner Card -->
+        <div class="card-custom p-4 mb-4">
+          <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+            <div class="d-flex align-items-center gap-3">
+              <div class="brand-icon" style="width:54px; height:54px; font-size:1.8rem;">
+                <i class="bi bi-cpu-fill"></i>
+              </div>
+              <div>
+                <div class="d-flex align-items-center gap-2">
+                  <h2 class="fw-bold text-white mb-0" id="detailProjTitle">Project Analyzer</h2>
+                  <span class="badge-custom badge-healthy" id="detailProjStatus"><i class="bi bi-check-circle-fill"></i> Healthy</span>
+                </div>
+                <p class="text-secondary small mb-0 mt-1" id="detailProjDesc">Full-stack static analysis and project health intelligence engine</p>
+              </div>
+            </div>
+
+            <!-- Quick Action Buttons -->
+            <div class="d-flex gap-2">
+              <a href="analysis.html" class="btn btn-primary-custom">
+                <i class="bi bi-play-circle-fill"></i> Run Analysis
+              </a>
+              <a href="issues.html" class="btn btn-secondary-custom">
+                <i class="bi bi-exclamation-triangle"></i> View Issues
+              </a>
+              <a href="reports.html" class="btn btn-secondary-custom">
+                <i class="bi bi-file-earmark-pdf"></i> Generate Report
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Overall Score Hero Banner -->
+        <div class="row g-4 mb-4">
+          <div class="col-lg-4">
+            <div class="card-custom p-4 text-center h-100 bg-secondary-theme d-flex flex-column justify-content-center">
+              <span class="text-secondary small fw-bold text-uppercase mb-2">Overall Project Health Score</span>
+              <div class="display-2 fw-extrabold text-success mb-1" id="detailScore">84</div>
+              <span class="text-muted small">Out of 100 (Pass threshold: 70)</span>
+              <div class="progress progress-custom mt-3">
+                <div class="progress-bar bg-success" style="width: 84%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-8">
+            <div class="card-custom p-4 h-100">
+              <h6 class="fw-bold text-white mb-3">Health Metrics Breakdown</h6>
+              <div class="row g-3">
+                <div class="col-6 col-md-4">
+                  <div class="bg-primary-theme p-3 rounded-3 border border-secondary text-center">
+                    <span class="d-block text-muted small">Code Quality</span>
+                    <span class="fw-bold fs-4 text-info">87 / 100</span>
+                  </div>
+                </div>
+                <div class="col-6 col-md-4">
+                  <div class="bg-primary-theme p-3 rounded-3 border border-secondary text-center">
+                    <span class="d-block text-muted small">Security</span>
+                    <span class="fw-bold fs-4 text-warning">74 / 100</span>
+                  </div>
+                </div>
+                <div class="col-6 col-md-4">
+                  <div class="bg-primary-theme p-3 rounded-3 border border-secondary text-center">
+                    <span class="d-block text-muted small">Architecture</span>
+                    <span class="fw-bold fs-4 text-success">91 / 100</span>
+                  </div>
+                </div>
+                <div class="col-6 col-md-4">
+                  <div class="bg-primary-theme p-3 rounded-3 border border-secondary text-center">
+                    <span class="d-block text-muted small">Testing</span>
+                    <span class="fw-bold fs-4 text-primary">76%</span>
+                  </div>
+                </div>
+                <div class="col-6 col-md-4">
+                  <div class="bg-primary-theme p-3 rounded-3 border border-secondary text-center">
+                    <span class="d-block text-muted small">Dependencies</span>
+                    <span class="fw-bold fs-4 text-secondary">42 Total</span>
+                  </div>
+                </div>
+                <div class="col-6 col-md-4">
+                  <div class="bg-primary-theme p-3 rounded-3 border border-secondary text-center">
+                    <span class="d-block text-muted small">Vulnerabilities</span>
+                    <span class="fw-bold fs-4 text-danger">3 Critical</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Information Cards Row -->
+        <div class="row g-4">
+          <!-- Project & Stack Info -->
+          <div class="col-lg-6">
+            <div class="card-custom h-100">
+              <div class="card-custom-header">
+                <h6 class="fw-bold text-white mb-0">Project & Technology Stack</h6>
+                <i class="bi bi-info-circle text-muted"></i>
+              </div>
+              <div class="card-custom-body">
+                <table class="table table-dark table-borderless small mb-0">
+                  <tbody>
+                    <tr>
+                      <td class="text-muted" style="width: 160px;">Primary Framework:</td>
+                      <td class="text-white fw-bold">Java 17 / Spring Boot 3.2.1</td>
+                    </tr>
+                    <tr>
+                      <td class="text-muted">Repository URL:</td>
+                      <td><a href="https://github.com/praveen/project-analyzer" target="_blank" class="text-accent">https://github.com/praveen/project-analyzer</a></td>
+                    </tr>
+                    <tr>
+                      <td class="text-muted">Detected Components:</td>
+                      <td>
+                        <span class="tech-pill me-1">12 Controllers</span>
+                        <span class="tech-pill me-1">18 Services</span>
+                        <span class="tech-pill me-1">14 Repositories</span>
+                        <span class="tech-pill">22 Entities</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-muted">Build Tool:</td>
+                      <td class="text-white">Apache Maven (pom.xml)</td>
+                    </tr>
+                    <tr>
+                      <td class="text-muted">Last Analysis Execution:</td>
+                      <td class="text-white">10 minutes ago by Praveen Kumar</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Radar Chart Preview -->
+          <div class="col-lg-6">
+            <div class="card-custom h-100">
+              <div class="card-custom-header">
+                <h6 class="fw-bold text-white mb-0">Quality Radar Benchmark</h6>
+                <span class="badge bg-secondary-theme text-white">6 Vector Analysis</span>
+              </div>
+              <div class="card-custom-body" style="height: 240px;">
+                <canvas id="detailQualityRadarChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/api-service.js"></script>
+  <script src="../js/charts.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      AppCharts.initQualityRadarChart('detailQualityRadarChart');
+    });
+  </script>
+</body>
+</html>

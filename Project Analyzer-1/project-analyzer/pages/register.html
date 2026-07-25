@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register — Project Analyzer</title>
+
+  <!-- CDNs -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body class="bg-primary-theme min-vh-100 d-flex align-items-center justify-content-center py-5 position-relative overflow-hidden">
+
+  <!-- Background Accent -->
+  <div style="position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0,0,0,0) 70%); pointer-events: none;"></div>
+
+  <div class="container position-relative" style="max-width: 460px;">
+    <!-- Logo -->
+    <div class="text-center mb-4">
+      <a href="../index.html" class="d-inline-flex align-items-center gap-2 text-decoration-none">
+        <div class="brand-icon" style="width:44px; height:44px; font-size:1.3rem;">
+          <i class="bi bi-cpu-fill"></i>
+        </div>
+        <span class="brand-name fs-4">PROJECT ANALYZER</span>
+      </a>
+      <p class="text-secondary small mt-2">Start understanding & elevating your software code quality.</p>
+    </div>
+
+    <!-- Register Card -->
+    <div class="card-custom p-4 p-md-5">
+      <form onsubmit="handleRegister(event)">
+        <div class="mb-3">
+          <label for="regFullName" class="form-label text-secondary small fw-bold">Full Name</label>
+          <div class="input-group">
+            <span class="input-group-text bg-input border-secondary text-muted"><i class="bi bi-person"></i></span>
+            <input type="text" id="regFullName" class="form-control form-control-custom" placeholder="Praveen Kumar" required>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="regEmail" class="form-label text-secondary small fw-bold">Email Address</label>
+          <div class="input-group">
+            <span class="input-group-text bg-input border-secondary text-muted"><i class="bi bi-envelope"></i></span>
+            <input type="email" id="regEmail" class="form-control form-control-custom" placeholder="praveen@company.com" required>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="regPassword" class="form-label text-secondary small fw-bold">Password</label>
+          <div class="input-group">
+            <span class="input-group-text bg-input border-secondary text-muted"><i class="bi bi-lock"></i></span>
+            <input type="password" id="regPassword" class="form-control form-control-custom" placeholder="••••••••" required>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label for="regConfirmPassword" class="form-label text-secondary small fw-bold">Confirm Password</label>
+          <div class="input-group">
+            <span class="input-group-text bg-input border-secondary text-muted"><i class="bi bi-shield-lock"></i></span>
+            <input type="password" id="regConfirmPassword" class="form-control form-control-custom" placeholder="••••••••" required>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary-custom w-100 justify-content-center py-2">
+          <i class="bi bi-person-plus"></i> Create Account
+        </button>
+      </form>
+    </div>
+
+    <!-- Bottom Link -->
+    <div class="text-center mt-4">
+      <span class="text-secondary small">Already have an account?</span>
+      <a href="login.html" class="small fw-bold text-accent ms-1">Login</a>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/main.js"></script>
+  <script>
+    function handleRegister(e) {
+      e.preventDefault();
+      const pass = document.getElementById('regPassword').value;
+      const confirmPass = document.getElementById('regConfirmPassword').value;
+
+      if (pass !== confirmPass) {
+        showToast("Error", "Passwords do not match!", "danger");
+        return;
+      }
+
+      showToast("Account Created", "Your developer profile is ready!", "success");
+      setTimeout(() => {
+        window.location.href = "dashboard.html";
+      }, 600);
+    }
+  </script>
+</body>
+</html>

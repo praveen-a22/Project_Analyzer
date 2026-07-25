@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Architecture — Project Analyzer</title>
+
+  <!-- CDNs -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-wrapper">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="d-flex align-items-center gap-2 text-decoration-none">
+          <div class="brand-icon">
+            <i class="bi bi-cpu-fill"></i>
+          </div>
+          <span class="brand-name">PROJECT ANALYZER</span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Main Navigation</div>
+        <a href="dashboard.html" class="sidebar-link">
+          <i class="bi bi-grid-1x2-fill"></i> Dashboard
+        </a>
+        <a href="projects.html" class="sidebar-link">
+          <i class="bi bi-folder-fill"></i> Projects
+        </a>
+        <a href="analysis.html" class="sidebar-link">
+          <i class="bi bi-activity"></i> Analysis
+        </a>
+        <a href="issues.html" class="sidebar-link">
+          <i class="bi bi-exclamation-triangle-fill"></i> Code Issues
+        </a>
+        <a href="dependencies.html" class="sidebar-link">
+          <i class="bi bi-diagram-3-fill"></i> Dependencies
+        </a>
+        <a href="architecture.html" class="sidebar-link active">
+          <i class="bi bi-layers-fill"></i> Architecture
+        </a>
+        <a href="testing.html" class="sidebar-link">
+          <i class="bi bi-check-circle-fill"></i> Testing & Coverage
+        </a>
+        <a href="reports.html" class="sidebar-link">
+          <i class="bi bi-file-earmark-bar-graph-fill"></i> Reports
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="settings.html" class="sidebar-link">
+          <i class="bi bi-gear-fill"></i> Settings
+        </a>
+        <a href="login.html" class="sidebar-link text-danger">
+          <i class="bi bi-box-arrow-left"></i> Logout
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="app-main">
+      <!-- Top Navbar -->
+      <header class="app-header">
+        <button id="mobileNavToggle" class="btn btn-icon btn-secondary-custom d-none" aria-label="Toggle Navigation">
+          <i class="bi bi-list fs-4"></i>
+        </button>
+        <div class="header-search">
+          <i class="bi bi-search"></i>
+          <input type="text" class="form-control form-control-custom" placeholder="Search architecture layers...">
+        </div>
+        <div class="header-actions">
+          <div class="avatar">PK</div>
+        </div>
+      </header>
+
+      <!-- Page Content -->
+      <div class="page-content">
+        <div class="page-header-row">
+          <div>
+            <h1 class="page-title">Visual System Architecture</h1>
+            <p class="page-subtitle">Interactive layered component diagram, coupling index, and complexity metrics.</p>
+          </div>
+          <div class="badge-custom badge-healthy p-2 px-3 fs-6">
+            <i class="bi bi-award-fill me-1"></i> Architecture Score: 91 / 100
+          </div>
+        </div>
+
+        <!-- 4 Architectural Metrics Cards -->
+        <div class="row g-4 mb-4">
+          <div class="col-6 col-md-3">
+            <div class="card-custom p-3 bg-secondary-theme text-center">
+              <span class="text-muted small fw-bold">Coupling Index</span>
+              <div class="fs-4 fw-extrabold text-success mt-1">Low (0.18)</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="card-custom p-3 bg-secondary-theme text-center">
+              <span class="text-muted small fw-bold">Cohesion Rating</span>
+              <div class="fs-4 fw-extrabold text-accent mt-1">High (89%)</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="card-custom p-3 bg-secondary-theme text-center">
+              <span class="text-muted small fw-bold">Cyclomatic Complexity</span>
+              <div class="fs-4 fw-extrabold text-info mt-1">Moderate (4.2)</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="card-custom p-3 bg-secondary-theme text-center">
+              <span class="text-muted small fw-bold">Architecture Score</span>
+              <div class="fs-4 fw-extrabold text-success mt-1">91 / 100</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual Architecture Flow Container -->
+        <div class="card-custom p-4 mb-4">
+          <div class="card-custom-header mb-4">
+            <h6 class="fw-bold text-white mb-0"><i class="bi bi-diagram-2 text-accent me-2"></i>Layered Component Flow Diagram</h6>
+            <span class="text-muted small">Strict Unidirectional Data Flow Enforcement</span>
+          </div>
+
+          <div class="arch-diagram-container">
+            
+            <!-- Layer 1: Controller -->
+            <div class="arch-layer-card">
+              <div class="d-flex align-items-center gap-3">
+                <div class="brand-icon" style="background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);">
+                  <i class="bi bi-globe"></i>
+                </div>
+                <div>
+                  <h6 class="fw-bold text-white mb-0">1. Controller Layer</h6>
+                  <span class="text-muted small">@RestController / REST Endpoints</span>
+                </div>
+              </div>
+              <div class="text-end">
+                <span class="badge bg-primary text-white mb-1">12 Classes</span>
+                <div class="text-muted" style="font-size:0.75rem;">HTTP Route Mapping</div>
+              </div>
+            </div>
+
+            <!-- Down Arrow -->
+            <i class="bi bi-arrow-down-circle-fill arch-arrow-down"></i>
+
+            <!-- Layer 2: Service -->
+            <div class="arch-layer-card">
+              <div class="d-flex align-items-center gap-3">
+                <div class="brand-icon" style="background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);">
+                  <i class="bi bi-gear-wide-connected"></i>
+                </div>
+                <div>
+                  <h6 class="fw-bold text-white mb-0">2. Service Layer</h6>
+                  <span class="text-muted small">@Service / Business Domain Logic</span>
+                </div>
+              </div>
+              <div class="text-end">
+                <span class="badge bg-secondary text-white mb-1">18 Classes</span>
+                <div class="text-muted" style="font-size:0.75rem;">Transactional Boundary</div>
+              </div>
+            </div>
+
+            <!-- Down Arrow -->
+            <i class="bi bi-arrow-down-circle-fill arch-arrow-down"></i>
+
+            <!-- Layer 3: Repository -->
+            <div class="arch-layer-card">
+              <div class="d-flex align-items-center gap-3">
+                <div class="brand-icon" style="background: linear-gradient(135deg, #06B6D4 0%, #0891B2 100%);">
+                  <i class="bi bi-database-fill-gear"></i>
+                </div>
+                <div>
+                  <h6 class="fw-bold text-white mb-0">3. Repository Layer</h6>
+                  <span class="text-muted small">@Repository / Spring Data JPA</span>
+                </div>
+              </div>
+              <div class="text-end">
+                <span class="badge bg-info text-dark mb-1">14 Interfaces</span>
+                <div class="text-muted" style="font-size:0.75rem;">ORM & Query Execution</div>
+              </div>
+            </div>
+
+            <!-- Down Arrow -->
+            <i class="bi bi-arrow-down-circle-fill arch-arrow-down"></i>
+
+            <!-- Layer 4: Database -->
+            <div class="arch-layer-card" style="border-color: var(--color-success);">
+              <div class="d-flex align-items-center gap-3">
+                <div class="brand-icon" style="background: linear-gradient(135deg, #22C55E 0%, #16A34A 100%);">
+                  <i class="bi bi-database-check"></i>
+                </div>
+                <div>
+                  <h6 class="fw-bold text-white mb-0">4. Database & Persistence</h6>
+                  <span class="text-muted small">MySQL 8.0 Relational DB</span>
+                </div>
+              </div>
+              <div class="text-end">
+                <span class="badge bg-success text-white mb-1">22 Entities</span>
+                <div class="text-muted" style="font-size:0.75rem;">ACID Data Storage</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

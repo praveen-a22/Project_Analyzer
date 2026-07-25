@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analyzing Project — Project Analyzer</title>
+
+  <!-- CDNs -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-wrapper">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="d-flex align-items-center gap-2 text-decoration-none">
+          <div class="brand-icon">
+            <i class="bi bi-cpu-fill"></i>
+          </div>
+          <span class="brand-name">PROJECT ANALYZER</span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Main Navigation</div>
+        <a href="dashboard.html" class="sidebar-link">
+          <i class="bi bi-grid-1x2-fill"></i> Dashboard
+        </a>
+        <a href="projects.html" class="sidebar-link">
+          <i class="bi bi-folder-fill"></i> Projects
+        </a>
+        <a href="analysis.html" class="sidebar-link active">
+          <i class="bi bi-activity"></i> Analysis
+        </a>
+        <a href="issues.html" class="sidebar-link">
+          <i class="bi bi-exclamation-triangle-fill"></i> Code Issues
+        </a>
+        <a href="dependencies.html" class="sidebar-link">
+          <i class="bi bi-diagram-3-fill"></i> Dependencies
+        </a>
+        <a href="architecture.html" class="sidebar-link">
+          <i class="bi bi-layers-fill"></i> Architecture
+        </a>
+        <a href="testing.html" class="sidebar-link">
+          <i class="bi bi-check-circle-fill"></i> Testing & Coverage
+        </a>
+        <a href="reports.html" class="sidebar-link">
+          <i class="bi bi-file-earmark-bar-graph-fill"></i> Reports
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="settings.html" class="sidebar-link">
+          <i class="bi bi-gear-fill"></i> Settings
+        </a>
+        <a href="login.html" class="sidebar-link text-danger">
+          <i class="bi bi-box-arrow-left"></i> Logout
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="app-main">
+      <!-- Top Navbar -->
+      <header class="app-header">
+        <button id="mobileNavToggle" class="btn btn-icon btn-secondary-custom d-none" aria-label="Toggle Navigation">
+          <i class="bi bi-list fs-4"></i>
+        </button>
+        <div class="header-search">
+          <i class="bi bi-search"></i>
+          <input type="text" class="form-control form-control-custom" placeholder="Search...">
+        </div>
+        <div class="header-actions">
+          <div class="avatar">PK</div>
+        </div>
+      </header>
+
+      <!-- Page Content -->
+      <div class="page-content">
+        <div class="page-header-row text-center d-block">
+          <h1 class="page-title">Analyzing Project</h1>
+          <p class="page-subtitle">Project Analyzer static engine is parsing AST, inspecting dependencies, and auditing security.</p>
+        </div>
+
+        <div class="analysis-progress-box shadow-lg" id="analysisProgressContainer">
+          
+          <!-- Spinner Ring -->
+          <div class="scanner-ring" id="analysisSpinner"></div>
+
+          <!-- Current Step Title -->
+          <h4 class="fw-bold text-white mb-2" id="analysisStepText">Scanning source files...</h4>
+          <p class="text-secondary small mb-4">Please wait while the static analysis rules execute.</p>
+
+          <!-- Progress Bar & Percentage -->
+          <div class="d-flex align-items-center justify-content-between mb-2">
+            <span class="text-muted small fw-bold text-uppercase">Progress</span>
+            <span class="fw-bold text-accent fs-5" id="analysisPercentText">0%</span>
+          </div>
+
+          <div class="progress progress-custom mb-4">
+            <div class="progress-bar-custom" id="analysisProgressBar" style="width: 0%;"></div>
+          </div>
+
+          <!-- Console Terminal Simulation -->
+          <div class="text-start bg-secondary-theme p-3 rounded-3 border border-secondary font-monospace small mb-4" id="analysisConsoleBox" style="height: 140px; overflow-y: auto;">
+            <div class="text-muted">[SYSTEM] Static Analysis Engine initialized.</div>
+          </div>
+
+          <!-- Completion Box (Hidden initially) -->
+          <div id="analysisCompletionBox" class="d-none pt-2">
+            <div class="alert alert-success bg-success bg-opacity-10 border-success text-success mb-3">
+              <i class="bi bi-check-circle-fill me-2 fs-5"></i> <strong>Analysis Complete!</strong> All security, quality, and architecture rules completed successfully.
+            </div>
+            <a href="project-details.html" class="btn btn-primary-custom btn-lg">
+              <i class="bi bi-arrow-right-circle-fill"></i> View Results
+            </a>
+          </div>
+
+        </div>
+
+        <!-- 5 Steps Checklist Card -->
+        <div class="card-custom p-4 max-w-md mx-auto" style="max-width: 680px;">
+          <h6 class="fw-bold text-white mb-3">Analysis Steps</h6>
+          <div class="d-flex flex-column gap-2 small">
+            <div class="d-flex align-items-center justify-content-between p-2 rounded bg-secondary-theme">
+              <span class="text-white"><i class="bi bi-1-circle-fill text-accent me-2"></i> Scanning source files</span>
+              <span class="badge bg-success bg-opacity-25 text-success">Completed</span>
+            </div>
+            <div class="d-flex align-items-center justify-content-between p-2 rounded bg-secondary-theme">
+              <span class="text-white"><i class="bi bi-2-circle-fill text-accent me-2"></i> Analyzing dependencies</span>
+              <span class="badge bg-success bg-opacity-25 text-success">Completed</span>
+            </div>
+            <div class="d-flex align-items-center justify-content-between p-2 rounded bg-secondary-theme">
+              <span class="text-white"><i class="bi bi-3-circle-fill text-accent me-2"></i> Checking security vulnerabilities</span>
+              <span class="badge bg-success bg-opacity-25 text-success">Completed</span>
+            </div>
+            <div class="d-flex align-items-center justify-content-between p-2 rounded bg-secondary-theme">
+              <span class="text-white"><i class="bi bi-4-circle-fill text-accent me-2"></i> Analyzing architecture coupling</span>
+              <span class="badge bg-success bg-opacity-25 text-success">Completed</span>
+            </div>
+            <div class="d-flex align-items-center justify-content-between p-2 rounded bg-secondary-theme">
+              <span class="text-white"><i class="bi bi-5-circle-fill text-accent me-2"></i> Calculating final metrics</span>
+              <span class="badge bg-success bg-opacity-25 text-success">Completed</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/analysis.js"></script>
+</body>
+</html>

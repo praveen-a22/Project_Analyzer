@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Issues — Project Analyzer</title>
+
+  <!-- CDNs -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-wrapper">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="d-flex align-items-center gap-2 text-decoration-none">
+          <div class="brand-icon">
+            <i class="bi bi-cpu-fill"></i>
+          </div>
+          <span class="brand-name">PROJECT ANALYZER</span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Main Navigation</div>
+        <a href="dashboard.html" class="sidebar-link">
+          <i class="bi bi-grid-1x2-fill"></i> Dashboard
+        </a>
+        <a href="projects.html" class="sidebar-link">
+          <i class="bi bi-folder-fill"></i> Projects
+        </a>
+        <a href="analysis.html" class="sidebar-link">
+          <i class="bi bi-activity"></i> Analysis
+        </a>
+        <a href="issues.html" class="sidebar-link active">
+          <i class="bi bi-exclamation-triangle-fill"></i> Code Issues
+        </a>
+        <a href="dependencies.html" class="sidebar-link">
+          <i class="bi bi-diagram-3-fill"></i> Dependencies
+        </a>
+        <a href="architecture.html" class="sidebar-link">
+          <i class="bi bi-layers-fill"></i> Architecture
+        </a>
+        <a href="testing.html" class="sidebar-link">
+          <i class="bi bi-check-circle-fill"></i> Testing & Coverage
+        </a>
+        <a href="reports.html" class="sidebar-link">
+          <i class="bi bi-file-earmark-bar-graph-fill"></i> Reports
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="settings.html" class="sidebar-link">
+          <i class="bi bi-gear-fill"></i> Settings
+        </a>
+        <a href="login.html" class="sidebar-link text-danger">
+          <i class="bi bi-box-arrow-left"></i> Logout
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="app-main">
+      <!-- Top Navbar -->
+      <header class="app-header">
+        <button id="mobileNavToggle" class="btn btn-icon btn-secondary-custom d-none" aria-label="Toggle Navigation">
+          <i class="bi bi-list fs-4"></i>
+        </button>
+        <div class="header-search">
+          <i class="bi bi-search"></i>
+          <input type="text" id="issueSearchInput" class="form-control form-control-custom" placeholder="Search issues, file names, rules...">
+        </div>
+        <div class="header-actions">
+          <div class="avatar">PK</div>
+        </div>
+      </header>
+
+      <!-- Page Content -->
+      <div class="page-content">
+        <div class="page-header-row">
+          <div>
+            <h1 class="page-title">Code Issues & Inspections</h1>
+            <p class="page-subtitle">Detailed breakdown of security vulnerabilities, code smells, and debt items.</p>
+          </div>
+        </div>
+
+        <!-- 4 Statistics Cards -->
+        <div class="row g-4 mb-4">
+          <div class="col-6 col-md-3">
+            <div class="card-custom p-3 bg-secondary-theme border-danger">
+              <span class="text-muted small fw-bold">Critical Severity</span>
+              <div class="display-6 fw-extrabold text-danger">3</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="card-custom p-3 bg-secondary-theme border-warning">
+              <span class="text-muted small fw-bold">High Severity</span>
+              <div class="display-6 fw-extrabold text-warning">8</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="card-custom p-3 bg-secondary-theme border-primary">
+              <span class="text-muted small fw-bold">Medium Severity</span>
+              <div class="display-6 fw-extrabold text-accent">17</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="card-custom p-3 bg-secondary-theme border-info">
+              <span class="text-muted small fw-bold">Low Severity</span>
+              <div class="display-6 fw-extrabold text-info">12</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filters Bar -->
+        <div class="card-custom p-3 mb-4">
+          <div class="row g-3 align-items-center">
+            <div class="col-md-4">
+              <label class="form-label text-muted small fw-bold mb-1">Filter by Severity</label>
+              <select id="severityFilterSelect" class="form-select form-select-custom">
+                <option value="all" selected>All Severities</option>
+                <option value="critical">Critical</option>
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label text-muted small fw-bold mb-1">Filter by Category</label>
+              <select id="categoryFilterSelect" class="form-select form-select-custom">
+                <option value="all" selected>All Categories</option>
+                <option value="security">Security</option>
+                <option value="code quality">Code Quality</option>
+                <option value="maintainability">Maintainability</option>
+                <option value="dependencies">Dependencies</option>
+                <option value="testing">Testing</option>
+              </select>
+            </div>
+            <div class="col-md-4 text-md-end pt-md-4">
+              <span class="text-secondary small"><i class="bi bi-info-circle me-1"></i> Showing real-time filtered results</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Issues Table -->
+        <div class="card-custom">
+          <div class="table-responsive">
+            <table class="table-custom">
+              <thead>
+                <tr>
+                  <th>Severity</th>
+                  <th>Issue Summary</th>
+                  <th>Category</th>
+                  <th>File</th>
+                  <th>Line</th>
+                  <th>Status</th>
+                  <th class="text-end">Action</th>
+                </tr>
+              </thead>
+              <tbody id="issuesTbody">
+                <!-- Populated via js/issues.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Bootstrap Modal Inspector for Code Issue Details -->
+  <div class="modal fade" id="issueDetailsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content modal-content-custom">
+        <div class="modal-header modal-header-custom">
+          <div class="d-flex align-items-center gap-2">
+            <span id="issueModalSeverity" class="badge-custom">Severity</span>
+            <h5 class="modal-title fw-bold text-white mb-0" id="issueModalTitle">Issue Title</h5>
+          </div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="row g-3 mb-3">
+            <div class="col-md-6">
+              <span class="text-muted small d-block">Category</span>
+              <span class="fw-bold text-white" id="issueModalCategory">Security</span>
+            </div>
+            <div class="col-md-6">
+              <span class="text-muted small d-block">File & Location</span>
+              <code class="text-info fw-bold" id="issueModalFile">UserService.java (Line 42)</code>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <h6 class="fw-bold text-white mb-1">Issue Description</h6>
+            <p class="text-secondary small" id="issueModalDescription">Description text...</p>
+          </div>
+
+          <div class="mb-3">
+            <h6 class="fw-bold text-white mb-1">Recommendation</h6>
+            <div class="p-3 bg-secondary-theme border border-secondary rounded-3 text-success small" id="issueModalRecommendation">
+              Recommendation text...
+            </div>
+          </div>
+
+          <div>
+            <h6 class="fw-bold text-white mb-1">Source Code Snippet</h6>
+            <pre class="code-block" id="issueModalCodeSnippet">Code snippet...</pre>
+          </div>
+        </div>
+        <div class="modal-footer modal-footer-custom">
+          <button type="button" class="btn btn-secondary-custom" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary-custom" onclick="showToast('Fix Applied', 'Simulated auto-remediation rule queued.', 'success')">
+            <i class="bi bi-magic"></i> Auto-Remediate
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/api-service.js"></script>
+  <script src="../js/issues.js"></script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analysis Reports — Project Analyzer</title>
+
+  <!-- CDNs -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-wrapper">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="d-flex align-items-center gap-2 text-decoration-none">
+          <div class="brand-icon">
+            <i class="bi bi-cpu-fill"></i>
+          </div>
+          <span class="brand-name">PROJECT ANALYZER</span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Main Navigation</div>
+        <a href="dashboard.html" class="sidebar-link">
+          <i class="bi bi-grid-1x2-fill"></i> Dashboard
+        </a>
+        <a href="projects.html" class="sidebar-link">
+          <i class="bi bi-folder-fill"></i> Projects
+        </a>
+        <a href="analysis.html" class="sidebar-link">
+          <i class="bi bi-activity"></i> Analysis
+        </a>
+        <a href="issues.html" class="sidebar-link">
+          <i class="bi bi-exclamation-triangle-fill"></i> Code Issues
+        </a>
+        <a href="dependencies.html" class="sidebar-link">
+          <i class="bi bi-diagram-3-fill"></i> Dependencies
+        </a>
+        <a href="architecture.html" class="sidebar-link">
+          <i class="bi bi-layers-fill"></i> Architecture
+        </a>
+        <a href="testing.html" class="sidebar-link">
+          <i class="bi bi-check-circle-fill"></i> Testing & Coverage
+        </a>
+        <a href="reports.html" class="sidebar-link active">
+          <i class="bi bi-file-earmark-bar-graph-fill"></i> Reports
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="settings.html" class="sidebar-link">
+          <i class="bi bi-gear-fill"></i> Settings
+        </a>
+        <a href="login.html" class="sidebar-link text-danger">
+          <i class="bi bi-box-arrow-left"></i> Logout
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="app-main">
+      <!-- Top Navbar -->
+      <header class="app-header">
+        <button id="mobileNavToggle" class="btn btn-icon btn-secondary-custom d-none" aria-label="Toggle Navigation">
+          <i class="bi bi-list fs-4"></i>
+        </button>
+        <div class="header-search">
+          <i class="bi bi-search"></i>
+          <input type="text" class="form-control form-control-custom" placeholder="Search reports...">
+        </div>
+        <div class="header-actions">
+          <div class="avatar">PK</div>
+        </div>
+      </header>
+
+      <!-- Page Content -->
+      <div class="page-content">
+        <div class="page-header-row">
+          <div>
+            <h1 class="page-title">Analysis Reports</h1>
+            <p class="page-subtitle">Generated assessment summaries and downloadable PDF documentation.</p>
+          </div>
+        </div>
+
+        <!-- Reports Cards Grid -->
+        <div class="row g-4" id="reportsGrid">
+          <!-- Rendered via JS -->
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Report Viewer Modal -->
+  <div class="modal fade" id="reportViewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content modal-content-custom">
+        <div class="modal-header modal-header-custom">
+          <h5 class="modal-title fw-bold text-white mb-0" id="reportModalTitle">Project Assessment Report</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="p-3 bg-secondary-theme rounded-3 border border-secondary mb-3 text-center">
+            <span class="text-muted small text-uppercase fw-bold d-block">Overall Score</span>
+            <span class="display-4 fw-extrabold text-success" id="reportModalScore">84</span>
+          </div>
+
+          <p class="text-secondary small">This assessment was generated automatically by Project Analyzer. It contains rule inspections for 148 Java source files, 42 Maven dependencies, and 108 unit tests.</p>
+
+          <div class="row g-3 text-center mb-3">
+            <div class="col-4">
+              <div class="bg-card-theme p-2 rounded border border-secondary">
+                <span class="d-block text-muted small">Quality</span>
+                <span class="fw-bold text-info">87 / 100</span>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="bg-card-theme p-2 rounded border border-secondary">
+                <span class="d-block text-muted small">Security</span>
+                <span class="fw-bold text-warning">74 / 100</span>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="bg-card-theme p-2 rounded border border-secondary">
+                <span class="d-block text-muted small">Coverage</span>
+                <span class="fw-bold text-success">76%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer modal-footer-custom">
+          <button type="button" class="btn btn-secondary-custom" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary-custom" onclick="downloadPdfSimulated()">
+            <i class="bi bi-file-earmark-pdf"></i> Download PDF Report
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/api-service.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      ApiService.getReports().then(reports => {
+        const grid = document.getElementById('reportsGrid');
+        if (!grid) return;
+
+        grid.innerHTML = reports.map(r => `
+          <div class="col-md-6 col-xl-4">
+            <div class="card-custom p-4 h-100">
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <div class="brand-icon" style="width:40px; height:40px;">
+                  <i class="bi bi-file-earmark-bar-graph"></i>
+                </div>
+                <span class="badge-custom badge-healthy">Score: ${r.score}</span>
+              </div>
+
+              <h5 class="fw-bold text-white mb-2">${r.title}</h5>
+              <div class="text-secondary small mb-3">
+                <i class="bi bi-calendar-event me-1"></i> Generated: ${r.date}
+              </div>
+
+              <div class="d-flex align-items-center justify-content-between pt-3 border-top border-secondary">
+                <span class="text-muted small">${r.size}</span>
+                <div class="d-flex gap-2">
+                  <button class="btn btn-secondary-custom btn-sm" onclick="openReportModal('${r.title}', ${r.score})">
+                    <i class="bi bi-eye"></i> View
+                  </button>
+                  <button class="btn btn-primary-custom btn-sm" onclick="downloadPdfSimulated()">
+                    <i class="bi bi-download"></i> PDF
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      });
+    });
+
+    function openReportModal(title, score) {
+      document.getElementById('reportModalTitle').textContent = title;
+      document.getElementById('reportModalScore').textContent = score;
+      const modal = new bootstrap.Modal(document.getElementById('reportViewModal'));
+      modal.show();
+    }
+
+    function downloadPdfSimulated() {
+      showToast("Download Started", "Generating PDF document package...", "info");
+      setTimeout(() => {
+        showToast("Download Complete", "Report PDF saved to downloads.", "success");
+      }, 1200);
+    }
+  </script>
+</body>
+</html>

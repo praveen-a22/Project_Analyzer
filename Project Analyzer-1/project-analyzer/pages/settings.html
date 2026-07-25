@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings — Project Analyzer</title>
+
+  <!-- CDNs -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-wrapper">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="d-flex align-items-center gap-2 text-decoration-none">
+          <div class="brand-icon">
+            <i class="bi bi-cpu-fill"></i>
+          </div>
+          <span class="brand-name">PROJECT ANALYZER</span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Main Navigation</div>
+        <a href="dashboard.html" class="sidebar-link">
+          <i class="bi bi-grid-1x2-fill"></i> Dashboard
+        </a>
+        <a href="projects.html" class="sidebar-link">
+          <i class="bi bi-folder-fill"></i> Projects
+        </a>
+        <a href="analysis.html" class="sidebar-link">
+          <i class="bi bi-activity"></i> Analysis
+        </a>
+        <a href="issues.html" class="sidebar-link">
+          <i class="bi bi-exclamation-triangle-fill"></i> Code Issues
+        </a>
+        <a href="dependencies.html" class="sidebar-link">
+          <i class="bi bi-diagram-3-fill"></i> Dependencies
+        </a>
+        <a href="architecture.html" class="sidebar-link">
+          <i class="bi bi-layers-fill"></i> Architecture
+        </a>
+        <a href="testing.html" class="sidebar-link">
+          <i class="bi bi-check-circle-fill"></i> Testing & Coverage
+        </a>
+        <a href="reports.html" class="sidebar-link">
+          <i class="bi bi-file-earmark-bar-graph-fill"></i> Reports
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="settings.html" class="sidebar-link active">
+          <i class="bi bi-gear-fill"></i> Settings
+        </a>
+        <a href="login.html" class="sidebar-link text-danger">
+          <i class="bi bi-box-arrow-left"></i> Logout
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="app-main">
+      <!-- Top Navbar -->
+      <header class="app-header">
+        <button id="mobileNavToggle" class="btn btn-icon btn-secondary-custom d-none" aria-label="Toggle Navigation">
+          <i class="bi bi-list fs-4"></i>
+        </button>
+        <div class="header-search">
+          <i class="bi bi-search"></i>
+          <input type="text" class="form-control form-control-custom" placeholder="Search settings...">
+        </div>
+        <div class="header-actions">
+          <div class="avatar">PK</div>
+        </div>
+      </header>
+
+      <!-- Page Content -->
+      <div class="page-content">
+        <div class="page-header-row">
+          <div>
+            <h1 class="page-title">Developer & App Settings</h1>
+            <p class="page-subtitle">Configure your developer profile, appearance preferences, and analysis depth.</p>
+          </div>
+          <button type="button" class="btn btn-primary-custom" onclick="saveSettingsForm()">
+            <i class="bi bi-floppy"></i> Save Changes
+          </button>
+        </div>
+
+        <div class="row g-4">
+          <!-- 1. Profile Settings -->
+          <div class="col-lg-6">
+            <div class="card-custom h-100 p-4">
+              <h6 class="fw-bold text-white mb-3"><i class="bi bi-person text-accent me-2"></i>Profile Information</h6>
+              
+              <div class="d-flex align-items-center gap-3 mb-4 pb-3 border-bottom border-secondary">
+                <div class="avatar" style="width:54px; height:54px; font-size:1.3rem;">PK</div>
+                <div>
+                  <h6 class="fw-bold text-white mb-1">Praveen Kumar</h6>
+                  <button class="btn btn-secondary-custom btn-sm" onclick="showToast('Upload Avatar', 'Select avatar image file.', 'info')">
+                    <i class="bi bi-upload"></i> Change Picture
+                  </button>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label text-secondary small fw-bold">Full Name</label>
+                <input type="text" class="form-control form-control-custom" value="Praveen Kumar">
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label text-secondary small fw-bold">Email Address</label>
+                <input type="email" class="form-control form-control-custom" value="praveen@analyzer.io">
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Appearance -->
+          <div class="col-lg-6">
+            <div class="card-custom h-100 p-4">
+              <h6 class="fw-bold text-white mb-3"><i class="bi bi-palette text-accent me-2"></i>Appearance & Theme</h6>
+              
+              <div class="d-flex align-items-center justify-content-between py-2 border-bottom border-secondary">
+                <div>
+                  <span class="fw-bold text-white d-block">Dark Developer Theme</span>
+                  <span class="text-muted small">High contrast #080B14 dark SaaS UI</span>
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" checked disabled>
+                </div>
+              </div>
+
+              <div class="d-flex align-items-center justify-content-between py-3 border-bottom border-secondary">
+                <div>
+                  <span class="fw-bold text-white d-block">Compact Sidebar Mode</span>
+                  <span class="text-muted small">Reduce sidebar icon margins for high resolution displays</span>
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="compactModeSwitch">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Notifications -->
+          <div class="col-lg-6">
+            <div class="card-custom h-100 p-4">
+              <h6 class="fw-bold text-white mb-3"><i class="bi bi-bell text-accent me-2"></i>Notification Preferences</h6>
+              
+              <div class="d-flex align-items-center justify-content-between py-2 border-bottom border-secondary">
+                <div>
+                  <span class="fw-bold text-white d-block">Email Notifications</span>
+                  <span class="text-muted small">Receive weekly executive project health digests</span>
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" checked>
+                </div>
+              </div>
+
+              <div class="d-flex align-items-center justify-content-between py-2 border-bottom border-secondary">
+                <div>
+                  <span class="fw-bold text-white d-block">Critical Security Alerts</span>
+                  <span class="text-muted small">Immediate alerts when Critical vulnerabilities or keys are detected</span>
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" checked>
+                </div>
+              </div>
+
+              <div class="d-flex align-items-center justify-content-between py-2">
+                <div>
+                  <span class="fw-bold text-white d-block">Analysis Completion Triggers</span>
+                  <span class="text-muted small">Notify when long background static scans finish</span>
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" checked>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Preferences & Analysis Depth -->
+          <div class="col-lg-6">
+            <div class="card-custom h-100 p-4">
+              <h6 class="fw-bold text-white mb-3"><i class="bi bi-sliders text-accent me-2"></i>Analysis Engine Configuration</h6>
+              
+              <div class="mb-3">
+                <label class="form-label text-secondary small fw-bold">Analysis Depth Level</label>
+                <select class="form-select form-select-custom">
+                  <option value="deep" selected>Deep AST & Dependency Graph Audit (Recommended)</option>
+                  <option value="standard">Standard Static Rule Inspection</option>
+                  <option value="quick">Quick Syntax & Linter Check</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label text-secondary small fw-bold">Default Export Report Format</label>
+                <select class="form-select form-select-custom">
+                  <option value="pdf" selected>Portable Document Format (PDF)</option>
+                  <option value="html">Interactive HTML Bundle</option>
+                  <option value="json">Machine Readable JSON</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/main.js"></script>
+  <script>
+    function saveSettingsForm() {
+      showToast("Settings Saved", "Your application preferences were updated successfully.", "success");
+    }
+  </script>
+</body>
+</html>

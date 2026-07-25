@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Project — Project Analyzer</title>
+
+  <!-- CDNs -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+  <div class="app-wrapper">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="d-flex align-items-center gap-2 text-decoration-none">
+          <div class="brand-icon">
+            <i class="bi bi-cpu-fill"></i>
+          </div>
+          <span class="brand-name">PROJECT ANALYZER</span>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">Main Navigation</div>
+        <a href="dashboard.html" class="sidebar-link">
+          <i class="bi bi-grid-1x2-fill"></i> Dashboard
+        </a>
+        <a href="projects.html" class="sidebar-link active">
+          <i class="bi bi-folder-fill"></i> Projects
+        </a>
+        <a href="analysis.html" class="sidebar-link">
+          <i class="bi bi-activity"></i> Analysis
+        </a>
+        <a href="issues.html" class="sidebar-link">
+          <i class="bi bi-exclamation-triangle-fill"></i> Code Issues
+        </a>
+        <a href="dependencies.html" class="sidebar-link">
+          <i class="bi bi-diagram-3-fill"></i> Dependencies
+        </a>
+        <a href="architecture.html" class="sidebar-link">
+          <i class="bi bi-layers-fill"></i> Architecture
+        </a>
+        <a href="testing.html" class="sidebar-link">
+          <i class="bi bi-check-circle-fill"></i> Testing & Coverage
+        </a>
+        <a href="reports.html" class="sidebar-link">
+          <i class="bi bi-file-earmark-bar-graph-fill"></i> Reports
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="settings.html" class="sidebar-link">
+          <i class="bi bi-gear-fill"></i> Settings
+        </a>
+        <a href="login.html" class="sidebar-link text-danger">
+          <i class="bi bi-box-arrow-left"></i> Logout
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="app-main">
+      <!-- Top Navbar -->
+      <header class="app-header">
+        <button id="mobileNavToggle" class="btn btn-icon btn-secondary-custom d-none" aria-label="Toggle Navigation">
+          <i class="bi bi-list fs-4"></i>
+        </button>
+        <div class="header-search">
+          <i class="bi bi-search"></i>
+          <input type="text" class="form-control form-control-custom" placeholder="Search...">
+        </div>
+        <div class="header-actions">
+          <div class="avatar">PK</div>
+        </div>
+      </header>
+
+      <!-- Page Content -->
+      <div class="page-content">
+        <div class="page-header-row">
+          <div>
+            <h1 class="page-title">Import & Analyze New Project</h1>
+            <p class="page-subtitle">Upload source archive or link a GitHub repository for static inspection.</p>
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-10 col-xl-8">
+            <div class="card-custom p-4 p-md-5">
+              
+              <!-- Tab Navigation -->
+              <ul class="nav nav-pills nav-justified mb-4 p-1 bg-secondary-theme rounded-3" id="importTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active text-white fw-bold py-2" id="upload-tab" data-bs-toggle="tab" data-bs-target="#uploadPane" type="button" role="tab">
+                    <i class="bi bi-file-earmark-zip me-2"></i> Option 1: Upload Project ZIP
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link text-white fw-bold py-2" id="github-tab" data-bs-toggle="tab" data-bs-target="#githubPane" type="button" role="tab">
+                    <i class="bi bi-github me-2"></i> Option 2: GitHub Repository
+                  </button>
+                </li>
+              </ul>
+
+              <!-- Tab Content -->
+              <div class="tab-content" id="importTabContent">
+                
+                <!-- Option 1: ZIP Upload -->
+                <div class="tab-pane fade show active" id="uploadPane" role="tabpanel">
+                  <div class="border border-dashed border-secondary rounded-3 p-5 text-center bg-secondary-theme mb-4 position-relative" style="border-style: dashed !important; border-width: 2px !important;">
+                    <i class="bi bi-cloud-arrow-up display-3 text-accent mb-3 d-block"></i>
+                    <h5 class="fw-bold text-white mb-2">Drag & Drop Project ZIP File Here</h5>
+                    <p class="text-secondary small mb-3">Or click below to browse local directory files</p>
+                    <input type="file" id="zipFileInput" accept=".zip" class="d-none" onchange="handleFileSelect(event)">
+                    <button class="btn btn-secondary-custom" onclick="document.getElementById('zipFileInput').click()">
+                      <i class="bi bi-folder-symlink"></i> Browse Files
+                    </button>
+                    <div id="selectedFileName" class="mt-3 text-success fw-bold small d-none"></div>
+
+                    <div class="mt-4 pt-3 border-top border-secondary text-muted small d-flex justify-content-center gap-4">
+                      <span><i class="bi bi-file-zip me-1"></i> Supported: ZIP</span>
+                      <span><i class="bi bi-hdd me-1"></i> Maximum: 50 MB</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Option 2: GitHub Repository -->
+                <div class="tab-pane fade" id="githubPane" role="tabpanel">
+                  <div class="bg-secondary-theme p-4 rounded-3 mb-4 border border-secondary">
+                    <label for="githubUrlInput" class="form-label text-white fw-bold">GitHub Repository URL</label>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text bg-input border-secondary text-muted"><i class="bi bi-link-45deg"></i></span>
+                      <input type="url" id="githubUrlInput" class="form-control form-control-custom" placeholder="https://github.com/username/project" value="https://github.com/praveen/project-analyzer">
+                    </div>
+                    <span class="text-muted small"><i class="bi bi-info-circle me-1"></i> Public repos can be scanned immediately. Private repos require SSH or OAuth configuration in Settings.</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Project Metadata Inputs -->
+              <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                  <label for="newProjName" class="form-label text-secondary small fw-bold">Project Name</label>
+                  <input type="text" id="newProjName" class="form-control form-control-custom" placeholder="e.g. Analytics Microservice" value="Project Analyzer">
+                </div>
+                <div class="col-md-6">
+                  <label for="newProjTech" class="form-label text-secondary small fw-bold">Primary Technology Stack</label>
+                  <select id="newProjTech" class="form-select form-select-custom">
+                    <option value="Java / Spring Boot" selected>Java / Spring Boot</option>
+                    <option value="Node.js / Express">Node.js / Express</option>
+                    <option value="Python / Django">Python / Django</option>
+                    <option value="C# / .NET Core">C# / .NET Core</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Action Button -->
+              <div class="d-flex justify-content-end gap-3 pt-3 border-top border-secondary">
+                <a href="projects.html" class="btn btn-secondary-custom">Cancel</a>
+                <button type="button" class="btn btn-primary-custom px-4" onclick="triggerAnalyzeAction()">
+                  <i class="bi bi-cpu"></i> Analyze Project
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/api-service.js"></script>
+  <script>
+    function handleFileSelect(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const fileDiv = document.getElementById('selectedFileName');
+        fileDiv.textContent = `Selected: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
+        fileDiv.classList.remove('d-none');
+      }
+    }
+
+    function triggerAnalyzeAction() {
+      const name = document.getElementById('newProjName').value || "New Project";
+      const tech = document.getElementById('newProjTech').value;
+
+      showToast("Initializing Engine", "Preparing scanner environment...", "info");
+      
+      ApiService.createProject({ name: name, technology: tech }).then(newProj => {
+        setTimeout(() => {
+          window.location.href = `analysis.html?id=${newProj.id}`;
+        }, 800);
+      });
+    }
+  </script>
+</body>
+</html>
